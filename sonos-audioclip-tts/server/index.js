@@ -456,6 +456,7 @@ app.get('/api/playClipAll', async (req, res) => {
   let streamUrl = req.query.streamUrl;
   const volume = req.query.volume;
   const priority = req.query.prio;
+  const exclude = req.query.exclude
 
   const speakTextRes = res;
   speakTextRes.setHeader('Content-Type', 'application/json');
@@ -491,7 +492,8 @@ app.get('/api/playClipAll', async (req, res) => {
   for (let householdId in allClipCapableDevices) {
     let household = allClipCapableDevices[householdId]
     for (let player of household) {
-      requestUrls.push(`https://api.ws.sonos.com/control/api/v1/players/${player.id}/audioClip`)
+      if (!((Array.isArray(exclude) && exclude.includes(player.name)) || exclude === player.name))
+        requestUrls.push(`https://api.ws.sonos.com/control/api/v1/players/${player.id}/audioClip`)
     }
   }
 

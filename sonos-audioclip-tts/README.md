@@ -137,6 +137,8 @@ You can play arbitrary audio files using `http://hassio.local:8349/api/playClip?
 
 You can play arbitrary audio files on all devices using `http://hassio.local:8349/api/playClipAll?streamUrl=<filename.mp3>&volume=<0 - 100>`
 
+You can exclude one or more rooms by specifying the `exclude` parameter using `http://hassio.local:8349/api/playClipAll?streamUrl=<filename.mp3>&exclude=Living Room&exclude=Bathroom`
+ 
 I recommend starting with volumes between 20 - 30 and working your way up in increments of 5. 100 is very very loud.
 
 To all requests the parameter `prio` can be added. This can be low `&prio=low` or high `&prio=high`:
